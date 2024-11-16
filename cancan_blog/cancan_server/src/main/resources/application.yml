@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      driver-class-name: ${cancan.datasource.driver-class-name}
+      url: jdbc:mysql://${cancan.datasource.host}:${cancan.datasource.port}/${cancan.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${cancan.datasource.username}
+      password: ${cancan.datasource.password}
+  redis:
+    host: ${cancan.redis.host}
+    port: ${cancan.redis.port}
+    database: ${cancan.redis.database}
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cancan.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      cancan:
+        mapper: debug
+        service: info
+        controller: info
