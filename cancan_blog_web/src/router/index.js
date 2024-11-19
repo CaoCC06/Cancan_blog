@@ -17,6 +17,11 @@ const routes = [
     //     },
     //   ]
     },
+    {
+      meta: { title: '测试' },
+      path: '/myTest',
+      component: () => import('../views/myTest.vue'),
+    }
     // {
     //   path: '/404',
     //   component: () => import('../components/Exception.vue')

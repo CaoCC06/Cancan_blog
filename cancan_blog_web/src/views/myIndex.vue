@@ -12,5 +12,5 @@
   
 </script>
 <style lang="css" scoped>
-  @import "../css/myIndex.css";
+  @import "../assets/css/myIndex.css";
 </style>
