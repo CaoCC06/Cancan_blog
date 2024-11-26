@@ -1,8 +1,7 @@
 <template>
-  <!-- <RouterView /> -->
-   <MyTest />
+  <RouterView />
+   <!-- <myTest /> -->
 </template>
-
 <script setup>
-  import MyTest from './views/myTest.vue';
+  // import myTest from './views/myTest.vue';
 </script>

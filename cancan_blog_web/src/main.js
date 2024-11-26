@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import './style.css'
 import router from './router'
+import { MotionPlugin } from '@vueuse/motion'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -14,4 +15,5 @@ app.use(router)
 app.use(ElementPlus, {
     locale: zhCn,
   })
+app.use(MotionPlugin)
 app.mount('#app')

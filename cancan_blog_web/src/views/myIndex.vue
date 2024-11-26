@@ -1,16 +1,24 @@
 <template>
-    <div>
-        <section>
-            <div class="content">
-                <h2>灿&nbsp;灿</h2>
-                <h2>灿&nbsp;灿</h2>
-            </div>
-        </section>
-    </div>
+    <keep-alive>
+      <background />
+    </keep-alive>
+    <keep-alive>
+      <myNav />
+    </keep-alive>
+    <keep-alive>
+      <myloge />
+    </keep-alive>
+    <div class="myIndex"></div>
 </template>
 <script setup lang="js">
-  
+  import background from '@/component/background.vue';
+  import myloge from '@/component/myloge.vue';
+  import myNav from '@/component/nav.vue';
 </script>
 <style lang="css" scoped>
   @import "../assets/css/myIndex.css";
+  .myIndex{
+    width: 100%;
+    height: 2000px;
+  }
 </style>
