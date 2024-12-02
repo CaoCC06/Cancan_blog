@@ -1,18 +1,41 @@
 <template>
-    <el-button @click="test">测试</el-button>
-    <el-input v-model="input" placeholder="返回的内容" disabled/>
+    <el-button @click="testGet">测试Get请求</el-button>
+    <el-input v-model="inputGet" placeholder="Get请求返回的内容" disabled/>
+    <el-button @click="testPost">测试Post请求</el-button>
+    <el-input v-model="inputPost" placeholder="Post请求返回的内容" disabled/>
 </template>
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
 
-var input = ref('')
+var inputGet = ref('')
+var inputPost = ref('')
 
-const test = () => {
-    axios.get('/api/test')
+const testGet = () => {
+    axios({
+        method: 'get',
+        url: '/api/test',
+    })
     .then(res => {
-        input.value = res.data.data
-        console.log(res.data)
+        inputGet.value = res.data.data
+        console.log(res.data.data)
+    })
+    .catch(error =>{
+        console.log(error.response)
+    })
+}
+const testPost = () => {
+    axios({
+        method: 'post',
+        url: '/api/test',
+        data: {
+            name: 'test',
+            age: 18
+        }
+    })
+    .then(res => {
+        inputPost.value = res.data.data.name +" "+ res.data.data.age
+        console.log(res.data.data)
     })
     .catch(error =>{
         console.log(error.response)

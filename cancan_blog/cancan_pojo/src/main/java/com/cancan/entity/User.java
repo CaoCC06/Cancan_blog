@@ -33,19 +33,7 @@ public class User implements Serializable {
     /**
     * 身份 0：管理员 1：普通成员
     */
-    private String identity;
-    /**
-    * 邮箱
-    */
-    private String email;
-    /**
-    * 性别 0：男，1：女，2：保密
-    */
-    private String sex;
-    /**
-    * 常驻省份
-    */
-    private String province;
+    private Integer identity;
     /**
     * 密保问题与答案
     */

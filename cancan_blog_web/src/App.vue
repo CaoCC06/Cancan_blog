@@ -1,7 +1,13 @@
 <template>
+  <keep-alive>
+    <myNav />
+  </keep-alive>
+  <keep-alive>
+    <background />
+  </keep-alive>
   <RouterView />
-   <!-- <myTest /> -->
 </template>
 <script setup>
-  // import myTest from './views/myTest.vue';
+  import myNav from '@/component/nav.vue';
+  import background from '@/component/background.vue';
 </script>

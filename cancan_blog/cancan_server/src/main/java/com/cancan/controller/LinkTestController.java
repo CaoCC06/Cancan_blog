@@ -4,9 +4,11 @@ import com.cancan.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/test")
@@ -18,5 +20,13 @@ public class LinkTestController {
     public Result link(){
         log.info("前后端成功连接");
         return Result.success("前后端成功连接");
+    }
+
+    @PostMapping
+    @ApiOperation("测试post连接")
+    public Result postLink(@RequestBody Map<String ,Object> map){
+        log.info("name:"+map.get("name"));
+        log.info("age:"+map.get("age"));
+        return Result.success(map);
     }
 }

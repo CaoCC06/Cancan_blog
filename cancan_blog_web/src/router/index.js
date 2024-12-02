@@ -8,32 +8,20 @@ const routes = [
       meta: { title: title},
       path: '/',
       component: () => import('../views/myIndex.vue'),
-    //   children: [
-    //     {
-    //       meta: { title: title+' - 树洞' },
-    //       name: 'TreeHole',
-    //       path: 'TreeHole',
-    //       component: () => import('../components/frontdesk/TreeHole.vue'),
-    //     },
-    //   ]
     },
     {
       meta: { title: '测试' },
       path: '/myTest',
       component: () => import('../views/myTest.vue'),
-    }
-    // {
-    //   path: '/404',
-    //   component: () => import('../components/Exception.vue')
-    // },
-    // {
-    //   path: '/Inhibit',
-    //   component: () => import('../components/Inhibit.vue')
-    // },
-    // {
-    //   path: '/:pathMatch(.*)',
-    //   redirect: '/404'
-    // },
+    },
+    {
+      path: '/404',
+      component: () => import('../views/404.vue')
+    },
+    {
+      path: '/:pathMatch(.*)',
+      redirect: '/404'
+    },
   ]
   
   const router = createRouter({

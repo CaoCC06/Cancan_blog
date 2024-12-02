@@ -1,12 +1,17 @@
-package com.cancan.utils;
+package com.cancan;
 
 import com.cancan.entity.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoginUser implements UserDetails {
 
     private User user;
@@ -17,12 +22,12 @@ public class LoginUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getUsername();
     }
 
     @Override

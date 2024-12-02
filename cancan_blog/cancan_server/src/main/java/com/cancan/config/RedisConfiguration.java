@@ -3,6 +3,7 @@ package com.cancan.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -20,7 +21,8 @@ import java.time.Duration;
  * Spring Boot 2.X版本自定义序列化方式
  */
 @Configuration
-public class RedisConfig {
+@Slf4j
+public class RedisConfiguration {
     /**
      *  定制Redis API模板RedisTemplate
      * @param redisConnectionFactory
@@ -28,6 +30,7 @@ public class RedisConfig {
      */
     @Bean
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        log.info("开始创建reids模板对象");
         RedisTemplate<Object, Object> template = new RedisTemplate();
         template.setConnectionFactory(redisConnectionFactory);
         // 使用JSON格式序列化对象，对缓存数据key和value进行转换
