@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface UserMapper {
 
-    @Select("select username,password,identity from user where username=#{username} and status=0 and deleted=0")
+    @Select("select id,username,password,identity from user where username=#{username} and status=0 and deleted=0")
     User getByUsername(String username);
 }

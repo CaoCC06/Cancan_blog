@@ -24,6 +24,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
         User user = userMapper.getByUsername(username);
         //没有查到用户则抛出异常
         if (Objects.isNull(user)){
+            log.info("用户名或密码错误");
             throw new RuntimeException("用户名或密码错误");
         }
         //将数据封装成UserDetails
