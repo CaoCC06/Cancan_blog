@@ -26,7 +26,7 @@ const frontendRoutes = [
 const backendRoutes = [
   {
     meta: { title: '控制台' },
-    path: '/console',
+    path: '/admin/console',
     component: () => import('../views/admin/aIndex.vue'),
   },
 ];
@@ -49,18 +49,18 @@ const backendRoutes = [
   });
 
   //全局前置守卫逻辑
-router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('jwt_token');
-  // 判断目标路由是否属于后台路由
-  const isBackendRoute = backendRoutes.some(route => route.path === to.path || to.matched.some(match => match.path === route.path));
-  if (isBackendRoute &&!token) {
-    // 如果是后台路由且没有JWT令牌，重定向到登录页面
-    next({name: 'Login'});
-  } else {
-    // 否则允许访问目标路由
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   const token = localStorage.getItem('jwt_token');
+//   // 判断目标路由是否属于后台路由
+//   const isBackendRoute = backendRoutes.some(route => route.path === to.path || to.matched.some(match => match.path === route.path));
+//   if (isBackendRoute &&!token) {
+//     // 如果是后台路由且没有JWT令牌，重定向到登录页面
+//     next({name: 'Login'});
+//   } else {
+//     // 否则允许访问目标路由
+//     next();
+//   }
+// });
   
 //   router.beforeEach((to, from, next) => {
 //     //加载动画

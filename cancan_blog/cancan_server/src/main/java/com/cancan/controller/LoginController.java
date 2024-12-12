@@ -1,6 +1,6 @@
 package com.cancan.controller;
 
-import com.cancan.entity.User;
+import com.cancan.entity.SysUser;
 import com.cancan.result.Result;
 import com.cancan.service.LoginService;
 import io.swagger.annotations.Api;
@@ -16,7 +16,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @PostMapping("/login")
-    public Result login(@RequestBody User user){
+    public Result login(@RequestBody SysUser user){
         return Result.success(loginService.login(user));
     }
 

@@ -1,6 +1,6 @@
 package com.cancan;
 
-import com.cancan.entity.User;
+import com.cancan.entity.SysUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class LoginUser implements UserDetails {
 
-    private User user;
+    private SysUser sysuer;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -22,12 +22,12 @@ public class LoginUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return sysuer.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return sysuer.getUsername();
     }
 
     @Override

@@ -30,6 +30,7 @@
         <jjwt>0.12.5</jjwt>
         <jaxb-api>2.3.1</jaxb-api>
         <security>2.7.3</security>
+        <hutool>5.8.16</hutool>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -110,7 +111,11 @@
                 <artifactId>spring-boot-starter-security</artifactId>
                 <version>${security}</version>
             </dependency>
-
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

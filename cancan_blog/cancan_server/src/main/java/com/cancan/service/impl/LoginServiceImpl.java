@@ -1,7 +1,7 @@
 package com.cancan.service.impl;
 
 import com.cancan.LoginUser;
-import com.cancan.entity.User;
+import com.cancan.entity.SysUser;
 import com.cancan.properties.JwtProperties;
 import com.cancan.service.LoginService;
 import com.cancan.utils.JwtUtil;
@@ -33,12 +33,12 @@ public class LoginServiceImpl implements LoginService {
 
     /**
      * 用户登录
-     * @param user
+     * @param sysuser
      * @return
      */
-    public LoginVO login(User user) {
+    public LoginVO login(SysUser sysuser) {
         //使用authenticationManager.authenticate进行用户验证
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(sysuser.getUsername(), sysuser.getPassword());
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         if (Objects.isNull(authenticate)){
             throw new RuntimeException("登陆失败");
@@ -46,18 +46,18 @@ public class LoginServiceImpl implements LoginService {
         //通过认证后，生成根据id 生成令牌JWT
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", loginUser.getUser().getId());
+        claims.put("id", loginUser.getSysuer().getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
         LoginVO loginVO = new LoginVO();
-        BeanUtils.copyProperties(loginUser.getUser(),loginVO);
+        BeanUtils.copyProperties(loginUser.getSysuer(),loginVO);
         loginVO.setToken(token);
         //将用户信息存入redis
-        redisUtil.setObjectValue("user:" + loginUser.getUser().getId(), loginUser);
+        redisUtil.setObjectValue("user:" + loginUser.getSysuer().getId(), loginUser);
         // 设置缓存过期时间为1小时（3600秒）
-        redisUtil.setExpire("user:" + loginUser.getUser().getId(), 3600);
+        redisUtil.setExpire("user:" + loginUser.getSysuer().getId(), 3600);
         return loginVO;
     }
 
@@ -71,7 +71,7 @@ public class LoginServiceImpl implements LoginService {
         if (Objects.isNull(loginUser)){
             throw new RuntimeException("用户未登录");
         }
-        Long id = loginUser.getUser().getId();
+        Long id = loginUser.getSysuer().getId();
         //删除Redis中的值
         redisUtil.delete("user:"+id);
     }
