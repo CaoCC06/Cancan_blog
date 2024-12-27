@@ -18,12 +18,12 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  import { ref, getCurrentInstance } from 'vue';
   import { ElMessage } from 'element-plus';
   import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
-  import axios from 'axios'; // 直接导入 axios
   
+  const { proxy } = getCurrentInstance(); // 获取全局属性
   const router = useRouter();
   const store = useStore();
   
@@ -56,15 +56,15 @@
   
   const login = async () => {
     try {
-      const response = await axios.post('/api/login', {
+      const response = await proxy.$axios.post('/api/login', {
         username: loginForm.value.username,
         password: loginForm.value.password
       });
-  
-      if (response.data.token) {
+      console.log(response);
+      if (response.data.data.token) {
         store.commit('setToken', response.data.token);
         ElMessage.success('登录成功');
-        router.push('/');
+        router.push('/admin/console');
       } else {
         ElMessage.error('登录失败，请检查用户名和密码');
       }
@@ -82,7 +82,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f2f5; /* 背景颜色 */
   }
   
   /* 居中显示 */

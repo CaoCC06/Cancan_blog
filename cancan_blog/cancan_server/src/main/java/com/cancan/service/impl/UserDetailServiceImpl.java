@@ -2,6 +2,7 @@ package com.cancan.service.impl;
 
 import com.cancan.LoginUser;
 import com.cancan.entity.SysUser;
+import com.cancan.mapper.SysMenuMapper;
 import com.cancan.mapper.SysUserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -17,6 +19,8 @@ import java.util.Objects;
 public class UserDetailServiceImpl implements UserDetailsService {
     @Autowired
     private SysUserMapper userMapper;
+    @Autowired
+    private SysMenuMapper menuMapper;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("验证用户");
@@ -27,7 +31,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
             log.info("用户名或密码错误");
             throw new RuntimeException("用户名或密码错误");
         }
+        //查询对应的权限
+        List<String> perms = menuMapper.getPermsByUserId(sysUser.getId());
         //将数据封装成UserDetails
-        return new LoginUser(sysUser);
+        return new LoginUser(sysUser,perms);
     }
 }
