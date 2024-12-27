@@ -8,7 +8,7 @@ import 'element-plus/dist/index.css';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import zhCn from 'element-plus/es/locale/lang/zh-cn'; // 引入中文语言包
 import store from './store'; // 确保正确导入 Vuex store
-import axios from 'axios'; // 导入 axios
+import axios from 'axios';
 
 const app = createApp(App);
 
@@ -16,9 +16,6 @@ const app = createApp(App);
 app.config.globalProperties.variable = {
   router_loading: ref(false)
 };
-
-// 全局注册 axios
-app.config.globalProperties.$axios = axios;
 
 // 使用路由
 app.use(router);
@@ -38,6 +35,8 @@ app.use(MotionPlugin);
 
 // 使用 Vuex store
 app.use(store);
+
+app.config.globalProperties.$axios = axios; 
 
 // 挂载应用
 app.mount('#app');

@@ -8,6 +8,10 @@ export default createStore({
     setToken(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
+    },
+    clearToken(state) {
+      state.token = '';
+      localStorage.removeItem('token');
     }
   },
   actions: {

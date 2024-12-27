@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
-import Login from '../views/login.vue'; // 确保正确导入 Login 组件
 
 // 定义前台路由数组
 const frontendRoutes = [

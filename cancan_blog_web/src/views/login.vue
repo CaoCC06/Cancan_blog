@@ -62,7 +62,7 @@
       });
       console.log(response);
       if (response.data.data.token) {
-        store.commit('setToken', response.data.token);
+        store.commit('setToken', response.data.data.token);
         ElMessage.success('登录成功');
         router.push('/admin/console');
       } else {

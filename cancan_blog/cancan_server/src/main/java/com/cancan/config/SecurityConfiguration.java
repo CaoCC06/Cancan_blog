@@ -39,8 +39,10 @@ public class SecurityConfiguration {
                 .authorizeRequests()
                 //允许匿名访问
                 .antMatchers("/login").anonymous()
+                .antMatchers("/test").permitAll()
 //                .antMatchers("/**").permitAll()
                 //除上面外的接口，全部要求鉴权访问
+                .antMatchers("/userLogout").hasAuthority("userLogout")
                 .anyRequest().authenticated();
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
