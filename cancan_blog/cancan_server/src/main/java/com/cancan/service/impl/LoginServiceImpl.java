@@ -56,8 +56,8 @@ public class LoginServiceImpl implements LoginService {
         loginVO.setToken(token);
         //将用户信息存入redis
         redisUtil.setObjectValue("user:" + loginUser.getSysuer().getId(), loginUser);
-        // 设置缓存过期时间为1小时（3600秒）
-        redisUtil.setExpire("user:" + loginUser.getSysuer().getId(), 3600);
+        // 设置缓存过期时间为10小时（36000秒）
+        redisUtil.setExpire("user:" + loginUser.getSysuer().getId(), 86400);
         return loginVO;
     }
 
